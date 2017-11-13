@@ -18,6 +18,24 @@ class Usermanager extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+    
+    public function add_nave_user($param) {
+
+        $q = 'INSERT INTO users (' . implode(',', array_keys($param)) . ') VALUES (';
+        for ($i = 0; $i < count($param); $i++) {
+            if ($i == 0) {
+                $q .= '?';
+                continue;
+            }
+            $q .= ',?';
+        }
+        $q .= ')';
+        return $this->db->query($q, array_values($param));
+    }
+
+    public function get_nave_users() {
+        return $this->db->query("SELECT * FROM `users` WHERE 1")->result();
+    }
 
     public function is_admin_in() {
         return $this->session->userdata($this->SESSION_STATUS) == TRUE &&

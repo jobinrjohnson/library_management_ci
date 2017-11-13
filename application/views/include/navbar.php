@@ -8,14 +8,14 @@
     <ul class="list-sidebar">
         <li><a href="<?php echo base_url(); ?>">Home</a></li>
         <li>
-            <a href="#">Users</a>
+            <a href="<?php echo base_url('users/'); ?>">Users</a>
             <ul>
-                <li><a href="">View users</a></li>
-                <li><a href="">Add users</a></li>
+                <li><a href="<?php echo base_url('users/'); ?>">View users</a></li>
+                <li><a href="<?php echo base_url('users/add'); ?>">Add users</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">Books</a>
+            <a href="<?php echo base_url('books/'); ?>">Books</a>
 
             <ul>
                 <li><a href="<?php echo base_url('books/'); ?>">View Books</a></li>
