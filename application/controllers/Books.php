@@ -43,14 +43,20 @@ class Books extends CI_Controller {
 
     public function add_book() {
 
-        $data = array('status' => 0, 'msg' => "Unable to complete registration. Please try again.");
+        $data = array('status' => 0
+            , 'msg' => "Unable to complete registration. Please try again.");
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('name', 'Name', 'trim|xss_clean|strip_tags|required|min_length[5]');
-        $this->form_validation->set_rules('rfid', 'RFID', 'alpha_numeric|required');
-        $this->form_validation->set_rules('author', 'Atuhor', 'trim|xss_clean|strip_tags');
-        $this->form_validation->set_rules('published', 'Published on', 'trim|xss_clean|strip_tags');
-        $this->form_validation->set_rules('descr', 'Description', 'trim|xss_clean|strip_tags|min_length[50]|max_length[10000]');
+        $this->form_validation->set_rules('name', 'Name'
+                , 'trim|xss_clean|strip_tags|required|min_length[5]');
+        $this->form_validation->set_rules('rfid', 'RFID'
+                , 'alpha_numeric|required');
+        $this->form_validation->set_rules('author', 'Atuhor'
+                , 'trim|xss_clean|strip_tags');
+        $this->form_validation->set_rules('published', 'Published on'
+                , 'trim|xss_clean|strip_tags');
+        $this->form_validation->set_rules('descr', 'Description'
+                , 'trim|xss_clean|strip_tags|min_length[50]|max_length[10000]');
         $this->form_validation->set_rules('category', 'Category', '');
 
 

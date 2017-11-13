@@ -24,8 +24,8 @@ class Welcome extends CI_Controller {
     public function index() {
         $this->load->view('home', array(
             'status' => $this->db->query("SELECT "
-                    . "(SELECT COUNT(*) FROM `books`) AS book_count"
-                    . ",(SELECT COUNT(*) FROM users) AS user_count")->first_row()
+                    . "(SELECT COUNT(*) FROM `books`) AS book_count, "
+                    . "(SELECT COUNT(*) FROM users) AS user_count")->first_row()
         ));
     }
 

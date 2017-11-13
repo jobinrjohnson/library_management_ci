@@ -14,7 +14,8 @@ class Book extends CI_Model {
 
     public function add_book($param) {
 
-        $q = 'INSERT INTO books (' . implode(',', array_keys($param)) . ') VALUES (';
+        $q = 'INSERT INTO books (' . implode(',', array_keys($param))
+                . ') VALUES (';
         for ($i = 0; $i < count($param); $i++) {
             if ($i == 0) {
                 $q .= '?';

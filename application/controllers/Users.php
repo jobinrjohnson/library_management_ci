@@ -43,13 +43,18 @@ class Users extends CI_Controller {
 
     public function add_user() {
 
-        $data = array('status' => 0, 'msg' => "Unable to complete registration. Please try again.");
+        $data = array('status' => 0
+            , 'msg' => "Unable to complete registration. Please try again.");
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('name', 'Name', 'trim|xss_clean|strip_tags|required|min_length[5]');
-        $this->form_validation->set_rules('email', 'Email', 'valid_email|required|is_unique[users.email]');
-        $this->form_validation->set_rules('address', 'Address', 'trim|xss_clean|strip_tags');
-        $this->form_validation->set_rules('dob', 'Date of birth', 'trim|xss_clean|strip_tags');
+        $this->form_validation->set_rules('name', 'Name'
+                , 'trim|xss_clean|strip_tags|required|min_length[5]');
+        $this->form_validation->set_rules('email', 'Email'
+                , 'valid_email|required|is_unique[users.email]');
+        $this->form_validation->set_rules('address', 'Address'
+                , 'trim|xss_clean|strip_tags');
+        $this->form_validation->set_rules('dob', 'Date of birth'
+                , 'trim|xss_clean|strip_tags');
 
 
         if ($this->form_validation->run() == TRUE) {

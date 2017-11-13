@@ -17,16 +17,23 @@ class Authorize extends CI_Controller {
             redirect(base_url());
             die();
         }
-        $redir_url = $this->session->flashdata('redir_url') ? $this->session->flashdata('redir_url') : base_url();
+        $redir_url = $this->session->flashdata('redir_url') ?
+                $this->session->flashdata('redir_url') : base_url();
         $this->session->set_flashdata('redir_url', $redir_url);
         $errors = NULL;
         if ($this->input->post()) {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('email', 'Username', 'trim|xss_clean|strip_tags|required');
-            $this->form_validation->set_rules('password', 'Password', 'trim|xss_clean|strip_tags|required', array('required' => 'You must provide a %s.')
+            $this->form_validation->set_rules('email', 'Username'
+                    , 'trim|xss_clean|strip_tags|required');
+            $this->form_validation->set_rules('password', 'Password'
+                    , 'trim|xss_clean|strip_tags|required', array(
+                'required' => 'You must provide a %s.')
             );
             if ($this->form_validation->run() == TRUE) {
-                if ($this->usermanager->log_admin_in($this->input->post('email', TRUE), $this->input->post('password', TRUE))) {
+                if ($this->usermanager->log_admin_in(
+                                $this->input->post('email', TRUE)
+                                , $this->input->post('password', TRUE))
+                ) {
                     redirect($redir_url);
                     return;
                 } else {

@@ -18,10 +18,11 @@ class Usermanager extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
+
     public function add_nave_user($param) {
 
-        $q = 'INSERT INTO users (' . implode(',', array_keys($param)) . ') VALUES (';
+        $q = 'INSERT INTO users (' . implode(',', array_keys($param))
+                . ') VALUES (';
         for ($i = 0; $i < count($param); $i++) {
             if ($i == 0) {
                 $q .= '?';
