@@ -13,17 +13,17 @@
     <body>
 
         <div class="container">
-            
+
             <div class="row">
 
                 <?php $this->load->view('include/navbar'); ?>
 
-                <div class="col-md-9">
-                    <h2>Welcome Admin</h2>
+                <div class="col-md-9 content">
+                    <h2 class="main-head">All books</h2>
+
                     
-                    
-                    
-                    
+
+
                 </div>
             </div>
 
