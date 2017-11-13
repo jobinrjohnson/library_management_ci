@@ -19,10 +19,13 @@ class Books extends CI_Controller {
             redirect(base_url('authorize'));
             die();
         }
+        $this->load->model('book');
     }
-    
+
     public function index() {
-        $this->load->view('book_s');
+        $this->load->view('book_s', array(
+            'books' => $this->book->get_all_books()
+        ));
     }
 
     public function add() {
@@ -61,8 +64,6 @@ class Books extends CI_Controller {
                 'descr' => $this->input->post('descr'),
                 'category' => $this->input->post('category')
             );
-
-            $this->load->model('book');
 
             if ($this->book->add_book($data_insert)) {
 

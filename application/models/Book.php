@@ -22,8 +22,12 @@ class Book extends CI_Model {
             }
             $q .= ',?';
         }
-        $q.= ')';
-        return $this->db->query($q,array_values($param));
+        $q .= ')';
+        return $this->db->query($q, array_values($param));
+    }
+
+    public function get_all_books() {
+        return $this->db->query("SELECT * FROM `books` WHERE 1")->result();
     }
 
 }

@@ -18,7 +18,7 @@
             <a href="#">Books</a>
 
             <ul>
-                <li><a href="">View Books</a></li>
+                <li><a href="<?php echo base_url('books/'); ?>">View Books</a></li>
                 <li><a href="<?php echo base_url('books/add'); ?>">Add Books</a></li>
             </ul>
         </li>
