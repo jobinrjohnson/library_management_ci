@@ -43,7 +43,7 @@ class Authorize extends CI_Controller {
 
     public function logout() {
         $this->usermanager->logout_admin();
-        redirect(base_url('manage'));
+        redirect(base_url());
     }
 
 }

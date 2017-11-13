@@ -58,8 +58,11 @@ class Usermanager extends CI_Model {
         }
     }
 
-    public function log_user_in($email) {
-        
+    public function logout_admin() {
+        $this->session->unset_userdata(array(
+            $this->SESSION_ID, $this->SESSION_STATUS
+        ));
+        return TRUE;
     }
 
 }

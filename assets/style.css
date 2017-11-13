@@ -9,10 +9,35 @@ file 'LICENSE.txt', which is part of this source code package.
 
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    animation: all .3s;
+}
+
+a{
+    color: inherit;
+    text-decoration: inherit;
 }
 
 body{
     margin: 0;
+}
+
+.row{
+    clear: both;
+    display: block;
+}
+
+.col-md-3{
+    width: 25%;
+}
+
+.col-md-9{
+    width: 75%;
+}
+
+.col-md-3,.col-md-9{
+    padding: 20px;
+    float: left;
 }
 
 .login-page{
@@ -119,3 +144,41 @@ body{
 .logo1 > *{
     display: block;
 }
+
+.container{
+    width: 80%;
+    display: block;
+    clear: both;
+    margin: auto;
+}
+
+.list-sidebar{
+    width: 100%;
+    border-right: solid 1px #00BCD4;
+}
+
+.list-sidebar >li{
+    width: 100%;
+    display: block;
+    text-transform: uppercase;
+}
+
+.list-sidebar li>a:hover{
+    color: white;
+    background: #00BCD4;
+}
+
+.list-sidebar li >a{
+    display: block;
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.list-sidebar>li >a{
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
