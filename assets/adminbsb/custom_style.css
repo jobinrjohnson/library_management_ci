@@ -1,0 +1,58 @@
+/*
+This file is subject to the terms and conditions defined in
+file 'LICENSE.txt', which is part of this source code package.
+*/
+/* 
+    Created on : Nov 6, 2017, 7:30:51 PM
+    Author     : jobinrjohnson
+*/
+
+.color-danger{
+    color: red;
+}
+
+.color-warning{
+    color:orange;
+}
+
+.color-success{
+    color: green;
+}
+
+.color-white{
+    color: white !important;
+}
+
+.previlage > span{
+    position: relative;
+    top: -7px;
+}
+
+.card > div.header >h2{
+    text-transform: uppercase;
+}
+
+.pull-some-left{
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.table.table-noborders >tbody > tr:first-child>td{
+    border-top: none;
+}
+
+.table.table-noborders >tbody > tr:last-child>td{
+    border-bottom: none;
+}
+
+.c1{
+    position: relative;
+    top: 6px;
+    margin-right: 20px;
+}
+
+.form-line > select+label{
+    bottom: 35;
+    font-size: 12px;
+    top: -10px;
+}

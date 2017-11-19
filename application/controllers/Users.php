@@ -27,19 +27,46 @@ class Users extends CI_Controller {
             'users' => $this->usermanager->get_nave_users()
         ));
     }
-
+    
+    
+    
+    
     public function add() {
-        if ($this->input->post()) {
-            $data = $this->add_user();
-            if ($data['status'] == 1) {
-                $this->session->set_flashdata('msg', 'User added successfully');
-                redirect(base_url('users'));
-            }
-            $this->load->view('user_add', $data);
-            return;
-        }
+        $this->load->library('formlib', array('form_name' => 'library_user'));
         $this->load->view('user_add');
     }
+
+//    public function add() {
+//        if ($this->input->post()) {
+//            $data = $this->add_user();
+//            if ($data['status'] == 1) {
+//                $this->session->set_flashdata('msg', 'User added successfully');
+//                redirect(base_url('users'));
+//            }
+//            $this->load->view('user_add', $data);
+//            return;
+//        }
+//        $this->load->view('user_add');
+//    }
+    
+    
+    
+    public function do_add() {
+        $this->load->library('formlib', array('form_name' => 'library_user'));
+        $this->output->set_content_type('application/json');
+        $data = array('status' => 0, 'msg' => "Unable to add");
+        $v = $this->formlib->validate();
+        if ($v === TRUE) {
+            if ($this->usermanager->add_nave_user($this->formlib->get_db_add_data())) {
+                $data['msg'] = 'Success User Added';
+                $data['status'] = 1;
+            }
+        } else {
+            $data['msg'] = $v;
+        }
+        $this->output->set_output(json_encode($data));
+    }
+    
 
     public function add_user() {
 

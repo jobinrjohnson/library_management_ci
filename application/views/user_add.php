@@ -1,61 +1,87 @@
 <!DOCTYPE html>
-<?php
-/*
- * This file is subject to the terms and conditions defined in
- * file 'LICENSE.txt', which is part of this source code package.
- */
-?>
 <html>
+
     <head>
+        <title><?php echo $this->formlib->get_title(1); ?></title>
         <?php $this->load->view('include/head_includes'); ?>
-        <title>Home | Library Management</title>
+        <link href="<?php echo base_url('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'); ?>" rel="stylesheet">
     </head>
-    <body>
 
-        <div class="container">
+    <body class="theme-blue">
 
-            <div class="row">
+        <?php $this->load->view('include/navbar'); ?>
 
-                <?php $this->load->view('include/navbar'); ?>
+        <section class="content">
+            <div class="container-fluid">
 
-                <div class="col-md-9 content">
-                    <h2 class="main-head">Add A User</h2>
-
-                    <form id="sign_in" method="POST" action="<?php echo base_url('users/add'); ?>">
-                        <div class="input-group">
-                            <label>User name</label>
-                            <input type="text" class="form-control" name="name" placeholder="User name" required>
-                        </div>
-                        <div class="input-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="input-group">
-                            <label>Date of birth</label>
-                            <input type="date" class="form-control" name="dob" value="19/12/2000">
-                        </div>   
-                        <div class="input-group">
-                            <label>Address</label>
-                            <textarea class="form-control" style="height: 100px;" name="address" rows="5" placeholder="Address"></textarea>
-                        </div>
-                        <?php if (isset($msg)): ?>
-                            <div class="row">
-
-                                <?php echo $msg; ?>
-
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    <?php echo $this->formlib->get_title(1); ?>
+                                </h2>
                             </div>
-                        <?php endif; ?>
-                        <div class="input-group">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">Submit</button>
+                            <form id="add_area" method="post" action="<?php echo base_url('users/do_add'); ?>">
+                                <div class="body">
+                                    <?php $this->formlib->load_form(); ?>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="header" style="border-top: 1px solid rgba(204, 204, 204, 0.35);">
+                                    <div class="alert bg-red" style="display: none;">
+                                        Some error occured
+                                    </div>
+                                    <input type="submit" class="btn btn-primary btn-lg" value="Add Store">
+                                </div>
+                            </form>
                         </div>
-
-                    </form>
-
-
-
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </section>
+        <?php $this->load->view('include/footer_includes'); ?>
+        <link href="<?php echo base_url('assets/plugins/sweetalert/sweetalert.css'); ?>" rel="stylesheet" />
+        <script src="<?php echo base_url('assets/plugins/sweetalert/sweetalert.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js'); ?>"></script>
+
+        <script>
+            var form_selector = "#add_area";
+            function showSuccessHTMLMessage() {
+                swal({
+                    title: "Success!",
+                    text: "Store added successfully <br><br><a class=\"btn btn-sm btn-success\" href=\"<?php echo base_url('users'); ?>\">Okay<a>",
+                    html: true,
+                    showConfirmButton: false
+                });
+            }
+
+            $(form_selector).on("submit", function (e) {
+                $(form_selector + " .alert").slideUp("slow");
+                $.ajax({
+                    type: "POST",
+                    url: $(form_selector).attr("action"),
+                    data: $(form_selector).serialize(),
+                    success: function (data) {
+                        var obj = eval(data);
+                        if (obj.status == 1) {
+                            showSuccessHTMLMessage();
+                        } else {
+                            $(form_selector + " .alert").slideDown("slow");
+                            $(form_selector + " .alert").html(obj.msg);
+                        }
+                    },
+                    error: function () {
+                        $(form_selector + " .alert").slideDown("slow");
+                        $(form_selector + " .alert").text("Unable to connect");
+                    }
+                });
+                e.preventDefault();
+            });
+
+        </script>
+
     </body>
+
 </html>
