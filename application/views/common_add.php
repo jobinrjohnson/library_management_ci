@@ -4,7 +4,6 @@
     <head>
         <title><?php echo $this->formlib->get_title(1); ?></title>
         <?php $this->load->view('include/head_includes'); ?>
-        <link href="<?php echo base_url('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'); ?>" rel="stylesheet">
     </head>
 
     <body class="theme-blue">
@@ -44,14 +43,13 @@
         <?php $this->load->view('include/footer_includes'); ?>
         <link href="<?php echo base_url('assets/plugins/sweetalert/sweetalert.css'); ?>" rel="stylesheet" />
         <script src="<?php echo base_url('assets/plugins/sweetalert/sweetalert.min.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js'); ?>"></script>
 
         <script>
             var form_selector = "#add_area";
-            function showSuccessHTMLMessage() {
+            function showSuccessHTMLMessage(msg) {
                 swal({
                     title: "Success!",
-                    text: "Store added successfully <br><br><a class=\"btn btn-sm btn-success\" href=\"<?php echo base_url('users'); ?>\">Okay<a>",
+                    text: msg + " <br><br><a class=\"btn btn-sm btn-success\" href=\"<?php echo base_url('users'); ?>\">Okay<a>",
                     html: true,
                     showConfirmButton: false
                 });
@@ -66,7 +64,7 @@
                     success: function (data) {
                         var obj = eval(data);
                         if (obj.status == 1) {
-                            showSuccessHTMLMessage();
+                            showSuccessHTMLMessage(obj.msg);
                         } else {
                             $(form_selector + " .alert").slideDown("slow");
                             $(form_selector + " .alert").html(obj.msg);

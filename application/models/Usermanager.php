@@ -34,6 +34,10 @@ class Usermanager extends CI_Model {
         return $this->db->query($q, array_values($param));
     }
 
+    public function edit($data, $id) {
+        return $this->db->where('id', $id)->update('users', $data);
+    }
+
     public function get_nave_users() {
         return $this->db->query("SELECT * FROM `users` WHERE 1")->result();
     }

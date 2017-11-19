@@ -27,30 +27,24 @@ class Users extends CI_Controller {
             'users' => $this->usermanager->get_nave_users()
         ));
     }
-    
-    
-    
-    
+
     public function add() {
         $this->load->library('formlib', array('form_name' => 'library_user'));
-        $this->load->view('user_add');
+        $this->load->view('common_add', array(
+            'redirurl' => base_url('users'),
+            'suburl' => base_url('users/do_add')
+        ));
     }
 
-//    public function add() {
-//        if ($this->input->post()) {
-//            $data = $this->add_user();
-//            if ($data['status'] == 1) {
-//                $this->session->set_flashdata('msg', 'User added successfully');
-//                redirect(base_url('users'));
-//            }
-//            $this->load->view('user_add', $data);
-//            return;
-//        }
-//        $this->load->view('user_add');
-//    }
-    
-    
-    
+    public function edit($param = 0) {
+        $this->load->library('formlib', array('form_name' => 'library_user'));
+        $this->load->view('common_edit', array(
+            'item' => (int) $param,
+            'redirurl' => base_url('users'),
+            'suburl' => base_url('users/do_edit')
+        ));
+    }
+
     public function do_add() {
         $this->load->library('formlib', array('form_name' => 'library_user'));
         $this->output->set_content_type('application/json');
@@ -66,47 +60,21 @@ class Users extends CI_Controller {
         }
         $this->output->set_output(json_encode($data));
     }
-    
 
-    public function add_user() {
-
-        $data = array('status' => 0
-            , 'msg' => "Unable to complete registration. Please try again.");
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('name', 'Name'
-                , 'trim|xss_clean|strip_tags|required|min_length[5]');
-        $this->form_validation->set_rules('email', 'Email'
-                , 'valid_email|required|is_unique[users.email]');
-        $this->form_validation->set_rules('address', 'Address'
-                , 'trim|xss_clean|strip_tags');
-        $this->form_validation->set_rules('dob', 'Date of birth'
-                , 'trim|xss_clean|strip_tags');
-
-
-        if ($this->form_validation->run() == TRUE) {
-
-            $data_insert = array(
-                'name' => $this->input->post('name'),
-                'email' => $this->input->post('email'),
-                'address' => $this->input->post('address'),
-                'dob' => $this->input->post('dob')
-            );
-
-            if ($this->usermanager->add_nave_user($data_insert)) {
-
-                $data['msg'] = 'Success';
+    public function do_edit() {
+        $this->load->library('formlib', array('form_name' => 'library_user'));
+        $this->output->set_content_type('application/json');
+        $data = array('status' => 0, 'msg' => "Unable to update");
+        $v = $this->formlib->validate_for_edit();
+        if ($v === TRUE) {
+            if ($this->usermanager->edit($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
+                $data['msg'] = 'Success user updated';
                 $data['status'] = 1;
-                $data['id'] = $this->db->insert_id();
-            } else {
-                $data['msg'] = 'Some error occured';
             }
         } else {
-            $data['msg'] = validation_errors();
+            $data['msg'] = $v;
         }
-
-
-        return $data;
+        $this->output->set_output(json_encode($data));
     }
 
 }
