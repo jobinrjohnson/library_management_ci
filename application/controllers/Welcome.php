@@ -25,7 +25,10 @@ class Welcome extends CI_Controller {
         $this->load->view('home', array(
             'status' => $this->db->query("SELECT "
                     . "(SELECT COUNT(*) FROM `books`) AS book_count, "
-                    . "(SELECT COUNT(*) FROM users) AS user_count")->first_row()
+                    . "(SELECT COUNT(*) FROM `author`) AS author_count, "
+                    . "(SELECT COUNT(*) FROM `category`) AS category_count, "
+                    . "(SELECT COUNT(*) FROM users) AS user_count")->first_row(),
+            'dc'=>$this->db->query("SELECT SUM(qty) AS total, SUM(qty)-0 AS remaining, books.name,books.id AS bookid FROM `stocks` INNER JOIN books ON stocks.book = books.id WHERE books.status=1")->first_row()
         ));
     }
 
