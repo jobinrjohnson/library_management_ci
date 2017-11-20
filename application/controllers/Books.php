@@ -29,62 +29,55 @@ class Books extends CI_Controller {
     }
 
     public function add() {
-        if ($this->input->post()) {
-            $data = $this->add_book();
-            if ($data['status'] == 1) {
-                $this->session->set_flashdata('msg', 'Book added successfully');
-                redirect(base_url('books'));
-            }
-            $this->load->view('book_add', $data);
-            return;
-        }
-        $this->load->view('book_add');
+        $this->load->library('formlib', array('form_name' => 'books'));
+        $this->load->view('common_add', array(
+            'redirurl' => base_url('books'),
+            'suburl' => base_url('books/do_add')
+        ));
     }
 
-    public function add_book() {
+//    public function add() {
+//        if ($this->input->post()) {
+//            $data = $this->add_book();
+//            if ($data['status'] == 1) {
+//                $this->session->set_flashdata('msg', 'Book added successfully');
+//                redirect(base_url('books'));
+//            }
+//            $this->load->view('book_add', $data);
+//            return;
+//        }
+//        $this->load->view('book_add');
+//    }
 
-        $data = array('status' => 0
-            , 'msg' => "Unable to complete registration. Please try again.");
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('name', 'Name'
-                , 'trim|xss_clean|strip_tags|required|min_length[5]');
-        $this->form_validation->set_rules('rfid', 'RFID'
-                , 'alpha_numeric|required');
-        $this->form_validation->set_rules('author', 'Atuhor'
-                , 'trim|xss_clean|strip_tags');
-        $this->form_validation->set_rules('published', 'Published on'
-                , 'trim|xss_clean|strip_tags');
-        $this->form_validation->set_rules('descr', 'Description'
-                , 'trim|xss_clean|strip_tags|min_length[50]|max_length[10000]');
-        $this->form_validation->set_rules('category', 'Category', '');
-
-
-        if ($this->form_validation->run() == TRUE) {
-
-            $data_insert = array(
-                'name' => $this->input->post('name'),
-                'rfid' => $this->input->post('rfid'),
-                'author' => $this->input->post('author'),
-                'published' => $this->input->post('published'),
-                'descr' => $this->input->post('descr'),
-                'category' => $this->input->post('category')
-            );
-
-            if ($this->book->add_book($data_insert)) {
-
-                $data['msg'] = 'Success';
+    public function do_add() {
+        $this->load->library('formlib', array('form_name' => 'books'));
+        $this->output->set_content_type('application/json');
+        $data = array('status' => 0, 'msg' => "Unable to add");
+        $v = $this->formlib->validate();
+        if ($v === TRUE) {
+            if ($this->book->add_book($this->formlib->get_db_add_data())) {
+                $data['msg'] = 'Success User Added';
                 $data['status'] = 1;
-                $data['id'] = $this->db->insert_id();
-            } else {
-                $data['msg'] = 'Some error occured';
             }
         } else {
-            $data['msg'] = validation_errors();
+            $data['msg'] = $v;
         }
-
-
-        return $data;
+        $this->output->set_output(json_encode($data));
     }
 
+    public function do_edit() {
+        $this->load->library('formlib', array('form_name' => 'books'));
+        $this->output->set_content_type('application/json');
+        $data = array('status' => 0, 'msg' => "Unable to update");
+        $v = $this->formlib->validate_for_edit();
+        if ($v === TRUE) {
+            if ($this->book->add_book($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
+                $data['msg'] = 'Success user updated';
+                $data['status'] = 1;
+            }
+        } else {
+            $data['msg'] = $v;
+        }
+        $this->output->set_output(json_encode($data));
+    }
 }

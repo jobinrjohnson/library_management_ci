@@ -85,3 +85,71 @@ $config['library_user'] = array(
     )
 );
 
+
+
+$config['books'] = array(
+    $primary_key => 'id',
+    $table => 'books',
+    $formtitle => 'Book',
+    $fields => array(
+        'name' => array(
+            $name => 'name',
+            $title => 'Title',
+            $tag => 'input',
+            $type => 'text',
+            $dbname => 'name',
+            $form_attr => array('required', 'min_length[2]')
+        ),
+        'rfid' => array(
+            $name => 'rfid',
+            $title => 'RFID TAG',
+            $tag => 'input',
+            $type => 'text',
+            $dbname => 'rfid',
+            $form_attr => array(
+                'required', 'min_length[2]', 'is_unique[books.rfid]'
+                , 'alpha_numeric'
+            )
+        ),
+        'descr_lang1' => array(
+            $name => 'descr_lang1',
+            $title => 'Book Descreption ',
+            $tag => 'textarea',
+            $dbname => 'descr',
+            $form_attr => array('min_length[15]', 'max_length[4000]')
+        ),
+        'category' => array(
+            $name => 'category',
+            $title => 'Category',
+            $tag => 'input',
+            $type => 'text',
+            $dbname => 'category',
+            $form_attr => array('required', 'min_length[2]')
+        ),
+        'published' => array(
+            $name => 'published',
+            $title => 'Published on ',
+            $tag => 'input',
+            $type => 'date',
+            $dbname => 'published'
+        ),
+        'author' => array(
+            $name => 'author',
+            $title => 'Author',
+            $tag => 'input',
+            $type => 'text',
+            $dbname => 'author',
+            $form_attr => array('required', 'min_length[2]')
+        ),
+        'enabled' => array(
+            $name => 'enabled',
+            $title => 'Enable this user',
+            $tag => 'input',
+            $type => 'simple_checkbox',
+            $default => 'checked',
+            $dbname => 'status',
+            $is_db => false
+        )
+    )
+);
+

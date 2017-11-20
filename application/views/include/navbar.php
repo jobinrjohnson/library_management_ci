@@ -90,14 +90,30 @@ $user = $this->usermanager->get_me();
                         <li>
                             <a href="<?php echo base_url('users/add'); ?>" class="waves-effect waves-block">Add User</a>
                         </li>
+                    </ul>
+                </li>     
+
+
+                <li class="<?php echo in_array('books', $url) ? 'active' : '' ?>">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">dns</i>
+                        <span>Book Management</span>
+                    </a>
+                    <ul class="ml-menu" style="display: none;">
                         <li>
-                            <a href="<?php echo base_url('manage/stocks/expired_stocks'); ?>" class="waves-effect waves-block">Expired Stocks</a>
+                            <a href="<?php echo base_url('books'); ?>" class="waves-effect waves-block">All Books</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('manage/stocks/returns'); ?>" class="waves-effect waves-block">Returns</a>
+                            <a href="<?php echo base_url('books/add'); ?>" class="waves-effect waves-block">Add Book</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('categories/'); ?>" class="waves-effect waves-block">Categories</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('authors/'); ?>" class="waves-effect waves-block">Authors</a>
                         </li>
                     </ul>
-                </li>                
+                </li>     
 
 
 

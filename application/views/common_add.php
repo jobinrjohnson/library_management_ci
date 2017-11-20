@@ -21,7 +21,7 @@
                                     <?php echo $this->formlib->get_title(1); ?>
                                 </h2>
                             </div>
-                            <form id="add_area" method="post" action="<?php echo base_url('users/do_add'); ?>">
+                            <form id="add_area" method="post" action="<?php echo $suburl; ?>">
                                 <div class="body">
                                     <?php $this->formlib->load_form(); ?>
                                     <div class="clearfix"></div>
@@ -31,7 +31,7 @@
                                     <div class="alert bg-red" style="display: none;">
                                         Some error occured
                                     </div>
-                                    <input type="submit" class="btn btn-primary btn-lg" value="Add Store">
+                                    <input type="submit" class="btn btn-primary btn-lg" value="Add">
                                 </div>
                             </form>
                         </div>
@@ -49,7 +49,7 @@
             function showSuccessHTMLMessage(msg) {
                 swal({
                     title: "Success!",
-                    text: msg + " <br><br><a class=\"btn btn-sm btn-success\" href=\"<?php echo base_url('users'); ?>\">Okay<a>",
+                    text: msg + " <br><br><a class=\"btn btn-sm btn-success\" href=\"<?php echo $redirurl; ?>\">Okay<a>",
                     html: true,
                     showConfirmButton: false
                 });
