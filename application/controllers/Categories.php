@@ -6,11 +6,11 @@
  */
 
 /**
- * Description of Books
+ * Description of Categories
  *
  * @author jobinrjohnson
  */
-class Books extends CI_Controller {
+class Categories extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -32,20 +32,19 @@ class Books extends CI_Controller {
         $this->load->library('formlib', array('form_name' => 'books'));
         $this->load->view('common_add', array(
             'redirurl' => base_url('books'),
-            'suburl' => base_url('books/do_add')
+            'suburl' => base_url('categories/do_add')
         ));
     }
 
-        public function edit($param = 0) {
-        $this->load->library('formlib', array('form_name' => 'books'));
+    public function edit($param = 0) {
+        $this->load->library('formlib', array('form_name' => 'library_user'));
         $this->load->view('common_edit', array(
             'item' => (int) $param,
-            'redirurl' => base_url('books'),
-            'suburl' => base_url('books/do_edit')
+            'redirurl' => base_url('users'),
+            'suburl' => base_url('users/do_edit')
         ));
     }
 
-    
     public function do_add() {
         $this->load->library('formlib', array('form_name' => 'books'));
         $this->output->set_content_type('application/json');
@@ -68,7 +67,7 @@ class Books extends CI_Controller {
         $data = array('status' => 0, 'msg' => "Unable to update");
         $v = $this->formlib->validate_for_edit();
         if ($v === TRUE) {
-            if ($this->book->edit($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
+            if ($this->book->add_book($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
                 $data['msg'] = 'Success user updated';
                 $data['status'] = 1;
             }
@@ -77,4 +76,5 @@ class Books extends CI_Controller {
         }
         $this->output->set_output(json_encode($data));
     }
+
 }

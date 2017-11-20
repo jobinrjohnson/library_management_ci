@@ -47,35 +47,40 @@
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
 
 
-                           <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Author</th>
-                                <th>Category</th>
-                                <th>RFID</th>
-                            </tr>
-                        </thead>        
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Author</th>
-                                <th>Category</th>
-                                <th>RFID</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <?php foreach ($books as $book): ?>
-                                <tr>
-                                    <td><?php echo $book->id; ?></td>
-                                    <td><?php echo $book->name; ?></td>
-                                    <td><?php echo $book->author; ?></td>
-                                    <td><?php echo $book->category; ?></td>
-                                    <td><?php echo $book->rfid; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Author</th>
+                                                <th>Category</th>
+                                                <th>RFID</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>        
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Author</th>
+                                                <th>Category</th>
+                                                <th>RFID</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <?php foreach ($books as $book): ?>
+                                                <tr>
+                                                    <td><?php echo $book->id; ?></td>
+                                                    <td><?php echo $book->name; ?></td>
+                                                    <td><?php echo $book->author; ?></td>
+                                                    <td><?php echo $book->category; ?></td>
+                                                    <td><?php echo $book->rfid; ?></td>  
+                                                    <td class="text-center">
+                                                        <a href="<?php echo base_url('books/edit/' . $book->id); ?>" class="btn btn-primary waves-effect">Edit</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
 
                                     </table>
                                 </div>

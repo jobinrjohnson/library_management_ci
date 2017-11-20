@@ -85,8 +85,6 @@ $config['library_user'] = array(
     )
 );
 
-
-
 $config['books'] = array(
     $primary_key => 'id',
     $table => 'books',
@@ -143,7 +141,7 @@ $config['books'] = array(
         ),
         'enabled' => array(
             $name => 'enabled',
-            $title => 'Enable this user',
+            $title => 'Enable this book',
             $tag => 'input',
             $type => 'simple_checkbox',
             $default => 'checked',

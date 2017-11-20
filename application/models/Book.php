@@ -30,5 +30,11 @@ class Book extends CI_Model {
     public function get_all_books() {
         return $this->db->query("SELECT * FROM `books` WHERE 1")->result();
     }
+    
+    
+    public function edit($data, $id) {
+        return $this->db->where('id', $id)->update('books', $data);
+    }
+
 
 }
