@@ -12,13 +12,12 @@
  */
 class Support extends CI_Model {
 
-    public function get_all_authors() {
-
-        return array();
-    }
-
     public function get_all_categories() {
         return $this->db->query("SELECT a.*, (SELECT COUNT(*) FROM books WHERE category = a.id) books FROM `category` a WHERE 1")->result();
+    }
+    
+    public function get_all_authors() {
+        return $this->db->query("SELECT a.*, (SELECT COUNT(*) FROM books WHERE author = a.id) books FROM `author` a WHERE 1")->result();
     }
 
     public function add_cat($param) {
@@ -27,6 +26,14 @@ class Support extends CI_Model {
 
     public function edit_cat($data, $id) {
         return $this->db->where('id', $id)->update('category', $data);
+    }
+
+    public function edit_author($data, $id) {
+        return $this->db->where('id', $id)->update('author', $data);
+    }
+
+    public function add_author($param) {
+        return $this->db->insert('author', $param);
     }
 
 }

@@ -31,7 +31,7 @@ $user = $this->usermanager->get_me();
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="<?php echo base_url('manage/auth/logout'); ?>" role="button">
+                    <a href="<?php echo base_url('authorize/logout'); ?>" role="button">
                         <i class="material-icons">input</i>
                     </a>
                 </li>
@@ -55,7 +55,7 @@ $user = $this->usermanager->get_me();
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="<?php echo base_url('manage/auth/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
+                        <li><a href="<?php echo base_url('authorize/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -72,7 +72,7 @@ $user = $this->usermanager->get_me();
                 ">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="<?php echo (strcmp($url[count($url) - 1], 'manage') == 0 ) ? 'active' : '' ?>">
-                    <a href="<?php echo base_url('manage/'); ?>">
+                    <a href="<?php echo base_url('/'); ?>">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
@@ -80,7 +80,7 @@ $user = $this->usermanager->get_me();
 
                 <li class="<?php echo in_array('users', $url) ? 'active' : '' ?>">
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
-                        <i class="material-icons">dns</i>
+                        <i class="material-icons">verified_user</i>
                         <span>User Management</span>
                     </a>
                     <ul class="ml-menu" style="display: none;">
@@ -94,7 +94,7 @@ $user = $this->usermanager->get_me();
                 </li>     
 
 
-                <li class="<?php echo in_array('books', $url) ? 'active' : '' ?>">
+                <li class="<?php echo in_array('books', $url)||in_array('authors', $url)||in_array('categories', $url) ? 'active' : '' ?>">
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">dns</i>
                         <span>Book Management</span>

@@ -53,7 +53,7 @@ class Books extends CI_Controller {
         $v = $this->formlib->validate();
         if ($v === TRUE) {
             if ($this->book->add_book($this->formlib->get_db_add_data())) {
-                $data['msg'] = 'Success User Added';
+                $data['msg'] = 'Success book Added';
                 $data['status'] = 1;
             }
         } else {
@@ -69,7 +69,7 @@ class Books extends CI_Controller {
         $v = $this->formlib->validate_for_edit();
         if ($v === TRUE) {
             if ($this->book->edit($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
-                $data['msg'] = 'Success user updated';
+                $data['msg'] = 'Success book updated';
                 $data['status'] = 1;
             }
         } else {

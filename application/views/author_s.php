@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Categories,Library Manage</title>
+        <title>Authors,Library Manage</title>
         <?php $this->load->view('include/head_includes'); ?>
         <link href="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css'); ?>" rel="stylesheet">
 
@@ -20,13 +20,13 @@
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Category MANAGEMENT
-                                    <small><?php echo'Total ' . count($books) . ' category added'; ?></small>
+                                    Author MANAGEMENT
+                                    <small><?php echo'Total ' . count($books) . ' author added'; ?></small>
                                 </h2>
                             </div>
                             <div class="body">
                                 <div class="button-demo">
-                                    <a href="<?php echo base_url('categories/add'); ?>" class="btn btn-primary waves-effect">Add a Category</a>
+                                    <a href="<?php echo base_url('authors/add'); ?>" class="btn btn-primary waves-effect">Add an Author</a>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    ALL Categories
+                                    ALL Authors
                                 </h2>
                             </div>
                             <div class="body">
@@ -73,10 +73,10 @@
                                                     <td><?php echo $book->id; ?></td>
                                                     <td><?php echo $book->name; ?></td>
                                                     <td><?php echo $book->books; ?></td>
-                                                    <td><?php echo $book->descr; ?></td>
+                                                    <td><?php echo $book->dob; ?></td>
                                                     <td><?php echo ($book->status == 1 ? '<i class="material-icons c1">done_all</i> Enabled' : '<i class="material-icons c1">warning</i>Disabled'); ?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('categories/edit/' . $book->id); ?>" class="btn btn-primary waves-effect">Edit</a>
+                                                        <a href="<?php echo base_url('authors/edit/' . $book->id); ?>" class="btn btn-primary waves-effect">Edit</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

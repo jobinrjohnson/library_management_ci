@@ -119,10 +119,10 @@ $config['books'] = array(
         'category' => array(
             $name => 'category',
             $title => 'Category',
-            $tag => 'input',
-            $type => 'text',
+            $tag => 'select',
+            $dynamic_data => 'category,id&name,status=1', //table name,fields,condition
             $dbname => 'category',
-            $form_attr => array('required', 'min_length[2]')
+            $form_attr => array('integer', 'required')
         ),
         'published' => array(
             $name => 'published',
@@ -134,10 +134,10 @@ $config['books'] = array(
         'author' => array(
             $name => 'author',
             $title => 'Author',
-            $tag => 'input',
-            $type => 'text',
+            $tag => 'select',
+            $dynamic_data => 'author,id&name,status=1', //table name,fields,condition
             $dbname => 'author',
-            $form_attr => array('required', 'min_length[2]')
+            $form_attr => array('integer', 'required')
         ),
         'enabled' => array(
             $name => 'enabled',
@@ -184,3 +184,43 @@ $config['category'] = array(
     )
 );
 
+
+$config['authors'] = array(
+    $primary_key => 'id',
+    $table => 'author',
+    $formtitle => 'Author',
+    $fields => array(
+        'name' => array(
+            $name => 'name',
+            $title => 'Author Name',
+            $tag => 'input',
+            $type => 'text',
+            $dbname => 'name',
+            $form_attr => array('required', 'min_length[2]')
+        ),
+        'dob' => array(
+            $name => 'dob',
+            $title => 'Date of birth ',
+            $tag => 'input',
+            $type => 'date',
+            $dbname => 'dob',
+            $form_attr => array('required')
+        ),
+        'address' => array(
+            $name => 'address',
+            $title => 'User Address ',
+            $tag => 'textarea',
+            $dbname => 'address',
+            $form_attr => array('min_length[15]', 'max_length[4000]')
+        ),
+        'enabled' => array(
+            $name => 'enabled',
+            $title => 'Enable this user',
+            $tag => 'input',
+            $type => 'simple_checkbox',
+            $default => 'checked',
+            $dbname => 'status',
+            $is_db => false
+        )
+    )
+);
