@@ -151,3 +151,36 @@ $config['books'] = array(
     )
 );
 
+
+$config['category'] = array(
+    $primary_key => 'id',
+    $table => 'category',
+    $formtitle => 'Category',
+    $fields => array(
+        'name' => array(
+            $name => 'name',
+            $title => 'Title',
+            $tag => 'input',
+            $type => 'text',
+            $dbname => 'name',
+            $form_attr => array('required', 'min_length[2]')
+        ),
+        'descr_lang1' => array(
+            $name => 'descr_lang1',
+            $title => 'Category Descreption ',
+            $tag => 'textarea',
+            $dbname => 'descr',
+            $form_attr => array('min_length[15]', 'max_length[4000]')
+        ),
+        'enabled' => array(
+            $name => 'enabled',
+            $title => 'Enable this Category',
+            $tag => 'input',
+            $type => 'simple_checkbox',
+            $default => 'checked',
+            $dbname => 'status',
+            $is_db => false
+        )
+    )
+);
+

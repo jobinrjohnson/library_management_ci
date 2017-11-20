@@ -19,40 +19,40 @@ class Categories extends CI_Controller {
             redirect(base_url('authorize'));
             die();
         }
-        $this->load->model('book');
+        $this->load->model('support');
     }
 
     public function index() {
-        $this->load->view('book_s', array(
-            'books' => $this->book->get_all_books()
+        $this->load->view('category_s', array(
+            'books' => $this->support->get_all_categories()
         ));
     }
 
     public function add() {
-        $this->load->library('formlib', array('form_name' => 'books'));
+        $this->load->library('formlib', array('form_name' => 'category'));
         $this->load->view('common_add', array(
-            'redirurl' => base_url('books'),
+            'redirurl' => base_url('categories'),
             'suburl' => base_url('categories/do_add')
         ));
     }
 
     public function edit($param = 0) {
-        $this->load->library('formlib', array('form_name' => 'library_user'));
+        $this->load->library('formlib', array('form_name' => 'category'));
         $this->load->view('common_edit', array(
             'item' => (int) $param,
-            'redirurl' => base_url('users'),
-            'suburl' => base_url('users/do_edit')
+            'redirurl' => base_url('categories'),
+            'suburl' => base_url('categories/do_edit')
         ));
     }
 
     public function do_add() {
-        $this->load->library('formlib', array('form_name' => 'books'));
+        $this->load->library('formlib', array('form_name' => 'category'));
         $this->output->set_content_type('application/json');
         $data = array('status' => 0, 'msg' => "Unable to add");
         $v = $this->formlib->validate();
         if ($v === TRUE) {
-            if ($this->book->add_book($this->formlib->get_db_add_data())) {
-                $data['msg'] = 'Success User Added';
+            if ($this->support->add_cat($this->formlib->get_db_add_data())) {
+                $data['msg'] = 'Success category Added';
                 $data['status'] = 1;
             }
         } else {
@@ -62,13 +62,13 @@ class Categories extends CI_Controller {
     }
 
     public function do_edit() {
-        $this->load->library('formlib', array('form_name' => 'books'));
+        $this->load->library('formlib', array('form_name' => 'category'));
         $this->output->set_content_type('application/json');
         $data = array('status' => 0, 'msg' => "Unable to update");
         $v = $this->formlib->validate_for_edit();
         if ($v === TRUE) {
-            if ($this->book->add_book($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
-                $data['msg'] = 'Success user updated';
+            if ($this->support->edit_cat($this->formlib->get_db_edit_data(), (int) $this->formlib->get_edit_primary_key())) {
+                $data['msg'] = 'Success category updated';
                 $data['status'] = 1;
             }
         } else {
