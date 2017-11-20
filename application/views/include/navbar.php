@@ -78,6 +78,21 @@ $user = $this->usermanager->get_me();
                     </a>
                 </li>
 
+                <li class="<?php echo in_array('stocks', $url) ? 'active' : '' ?>">
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">dns</i>
+                        <span>Stocks</span>
+                    </a>
+                    <ul class="ml-menu" style="display: none;">
+                        <li>
+                            <a href="<?php echo base_url('stocks'); ?>" class="waves-effect waves-block">View Stock</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('stocks/add'); ?>" class="waves-effect waves-block">Add Stock</a>
+                        </li>
+                    </ul>
+                </li>     
+
                 <li class="<?php echo in_array('users', $url) ? 'active' : '' ?>">
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">verified_user</i>

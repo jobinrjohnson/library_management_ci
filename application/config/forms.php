@@ -24,6 +24,35 @@ $table = 'table';
 $primary_key = 'primary_key';
 
 
+$config['stocks'] = array(
+    $primary_key => 'id',
+    $table => 'stocks',
+    $formtitle => 'Stock',
+    $fields => array(
+        'book' => array(
+            $name => 'book',
+            $title => 'book',
+            $tag => 'select',
+            $dynamic_data => 'books,id&name,status=1', //table name,fields,condition
+            $dbname => 'book',
+            $form_attr => array('integer', 'required')
+        ),
+        'qty' => array(
+            $name => 'Quantity',
+            $title => 'qty',
+            $tag => 'input',
+            $type => 'number',
+            $dbname => 'qty',
+            $form_attr => array('required', 'numeric')
+        ), 'descr_lang1' => array(
+            $name => 'descr_lang1',
+            $title => 'Notes ',
+            $tag => 'textarea',
+            $dbname => 'notes',
+            $form_attr => array('min_length[1]', 'max_length[4000]')
+        )
+    )
+);
 
 
 $config['library_user'] = array(

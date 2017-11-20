@@ -28,13 +28,19 @@ class Book extends CI_Model {
     }
 
     public function get_all_books() {
-        return $this->db->query("SELECT * FROM `books` WHERE 1")->result();
+        return $this->db->query("SELECT books.id,books.name AS name, books.rfid, author.name AS author, category.name AS category FROM `books` INNER JOIN category ON books.category = category.id INNER JOIN author ON books.author = author.id")->result();
     }
-    
-    
+
+    public function get_stocks() {
+        return $this->db->query("SELECT SUM(qty) AS total, SUM(qty)-0 AS remaining, books.name,books.id AS bookid FROM `stocks` INNER JOIN books ON stocks.book = books.id WHERE books.status=1 GROUP BY books.id")->result();
+    }
+
     public function edit($data, $id) {
         return $this->db->where('id', $id)->update('books', $data);
     }
 
+    public function add_stock($param) {
+        return $this->db->insert('stocks', $param);
+    }
 
 }
