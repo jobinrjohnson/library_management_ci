@@ -9,17 +9,14 @@
                 width: 100%;
                 height: 100%;
                 background-color: #00BCD4;
+                margin: 0;
             }
         </style>
     </head>
 
     <body class="login-page">
         <div class="login-box">
-            <div class="logo1">
-                <h1><b>DASH</b>BOARD</h1>
-                <small>Login to your dashboard</small>
-                <br>
-            </div>
+            <br><br><br>
             <div class="card">
                 <div class="body">
                     <form id="sign_in" method="POST">
